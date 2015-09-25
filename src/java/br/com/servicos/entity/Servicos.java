@@ -1,6 +1,7 @@
 package br.com.servicos.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 public class Servicos implements Serializable{
     
     @Id
+    @Column(name="id_servico")
     @GeneratedValue
     private int id;
     private String nome;

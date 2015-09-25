@@ -1,6 +1,7 @@
 package br.com.servicos.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 public class Clientes implements Serializable{
     
     @Id
+    @Column(name = "id_cliente")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nome;
@@ -89,30 +91,4 @@ public class Clientes implements Serializable{
     public void setPais(String pais) {
         this.pais = pais;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Clientes other = (Clientes) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
-    
 }

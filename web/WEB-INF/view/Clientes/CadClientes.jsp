@@ -3,11 +3,10 @@
     Created on : 23/09/2015, 22:59:03
     Author     : cardoso
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.List"%>
-<%@page import="br.com.servicos.bean.ClientesBean"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="br.com.servicos.bean.ClientesBean"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -134,8 +133,8 @@
               </tr>
             </thead>
             <tbody>
-                <jsp:useBean id="clientesDAO" class="br.com.servicos.dao.ClientesDAO" />
-                <c:forEach var="clientes" items="${clientes}">
+                <jsp:useBean id="ClientesBean" class="br.com.servicos.bean.ClientesBean" />
+                <c:forEach var="clientes" items="${cliente}">
                     <tr>
                         <td>${clientes.id}</td>
                         <td>${clientes.nome}</td>
@@ -146,6 +145,7 @@
                         <td>${clientes.cidade}</td>
                         <td>${clientes.pais}</td>
                         <td>
+                            
                             <a href="Clientes?acao=alterarCliente&id=${clientes.id}">
                                 <button class="btn btn-warning">Alterar</button>
                             </a>

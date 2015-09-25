@@ -12,7 +12,8 @@ import org.hibernate.Criteria;
  *
  * @author cardoso
  */
-public class ClientesDAO implements IClientesDAO{
+public class ClientesDAO implements IClientesDAO {
+    
     private Session sessao;
     private Transaction trans;
     private List<Clientes> list;
@@ -68,6 +69,22 @@ public class ClientesDAO implements IClientesDAO{
             if(sessao != null){
                 sessao.close();
             }
+        }
+    }
+    
+    public void updateCliente(Clientes c){
+        try {
+        
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            trans = sessao.beginTransaction();
+             
+            sessao.update(c);
+            trans.commit();
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            sessao.close();
         }
     }
     

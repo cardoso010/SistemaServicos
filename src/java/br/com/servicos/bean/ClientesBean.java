@@ -7,15 +7,28 @@ package br.com.servicos.bean;
 
 import br.com.servicos.dao.ClientesDAO;
 import br.com.servicos.entity.Clientes;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author cardoso
  */
 
-public class ClientesBean {
+public class ClientesBean extends HttpServlet{
+    
+     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        doPost(request, response);
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    }
 
     /**
      * Creates a new instance of ClientesBean
@@ -33,14 +46,31 @@ public class ClientesBean {
         System.out.println("Passou addclienteDAO");
         return "sucesso!";
     }
-    public String removerCliente(){
-        clienteDAO.removeCliente(cliente);
+    public String removerCliente(Clientes c){
+        this.cliente = c;
+        clienteDAO.removeCliente(this.cliente);
         return "sucesso!";
     }
     
     public List listarClientes(){
         listaCliente = clienteDAO.getList();
+        if(!listaCliente.isEmpty()){
+            System.out.println("Não esta vazia!");
+        }else{
+            System.out.println("Esta vazia");
+        }
         return this.listaCliente;
+    }
+    
+    public String carregarCLientes(Clientes c){
+        cliente = c;
+        return "editar";
+    }
+    
+    public String alterarClientes(){
+        clienteDAO.updateCliente(cliente);
+        cliente = null;
+        return "";
     }
 
     public Clientes getCliente() {
@@ -50,29 +80,5 @@ public class ClientesBean {
     public void setCliente(Clientes cliente) {
         this.cliente = cliente;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.cliente);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ClientesBean other = (ClientesBean) obj;
-        if (!Objects.equals(this.cliente, other.cliente)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
     
 }

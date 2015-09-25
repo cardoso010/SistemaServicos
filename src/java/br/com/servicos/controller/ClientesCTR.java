@@ -32,8 +32,13 @@ public class ClientesCTR extends HttpServlet {
        
         Funcoes objfuncoes = new Funcoes();
         String acao = objfuncoes.Nulo(request.getParameter("acao"));
-        List<Clientes> cliente = new ClientesDAO().getList();
-        request.setAttribute("clientes", cliente);
+        List<Clientes> cliente = new ClientesBean().listarClientes();
+        if(!cliente.isEmpty()){
+            System.out.println("Não esta vazia!");
+        }else{
+            System.out.println("Esta vazia");
+        }
+        request.setAttribute("cliente", cliente);
         
         if(acao.equals("cadastrarClientes")){
             if(request.getParameter("nome") != null){
@@ -55,10 +60,19 @@ public class ClientesCTR extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Clientes/CadClientes.jsp");
                 rd.forward(request, response);
             }
-        }else if(acao.equals("listarClientes")){
+        }else if(acao.equals("alterarCliente")){
+            if(request.getParameter("id") != null){
+                
+            }
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Clientes/LisClientes.jsp");
             rd.forward(request, response);
-        }else if(acao.equals("listarCliente")){
+        }else if(acao.equals("deletarCliente")){
+            if(request.getParameter("id") != null){
+                Clientes clientes = new Clientes();
+                clientes.setId(Integer.parseInt(request.getParameter("id")));
+                ClientesBean clientesbean = new ClientesBean();
+                clientesbean.removerCliente(clientes);
+            }
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Clientes/CadClientes.jsp");
             rd.forward(request, response);
         }else{

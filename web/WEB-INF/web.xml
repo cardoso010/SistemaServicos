@@ -9,11 +9,11 @@
         <welcome-file>/WEB-INF/view/index.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
-        <servlet-name>ClientesDAO</servlet-name>
-        <url-clas>br.com.servicos.dao.ClientesDAO</url-clas>
+        <servlet-name>ClientesBean</servlet-name>
+        <servlet-class>br.com.servicos.bean.ClientesBean</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ClientesDAO</servlet-name>
+        <servlet-name>ClientesBean</servlet-name>
         <url-pattern>/WEB-INF/view/Clientes/*</url-pattern>
     </servlet-mapping>
 </web-app>
