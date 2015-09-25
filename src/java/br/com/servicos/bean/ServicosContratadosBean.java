@@ -7,7 +7,9 @@ package br.com.servicos.bean;
 
 import br.com.servicos.dao.ServicosContratadosDAO;
 import br.com.servicos.entity.ServicosContratados;
+import java.io.StringWriter;
 import java.util.List;
+import org.json.JSONObject;
 
 /**
  *
@@ -24,13 +26,14 @@ public class ServicosContratadosBean {
         System.out.println("Passou addclienteDAO");
         return "sucesso!";
     }
-    public String removerCliente(ServicosContratados sc){
+    public String removerservicoContr(ServicosContratados sc){
         this.servcontr = sc;
         servcontrDAO.removeServicosContratados(this.servcontr);
         return "sucesso!";
     }
+
     
-    public List listarClientes(){
+    public List listarServContra(){
         listaServicosContratados = servcontrDAO.getList();
         if(!listaServicosContratados.isEmpty()){
             System.out.println("Não esta vazia!");
@@ -39,5 +42,22 @@ public class ServicosContratadosBean {
         }
         return this.listaServicosContratados;
     }
+    
+    public void Json(){
+        listaServicosContratados = servcontrDAO.getList();
+        JSONObject json = new JSONObject();
+        StringWriter ou = new StringWriter();
+        
+    }
+
+    public ServicosContratados getServcontr() {
+        return servcontr;
+    }
+
+    public void setServcontr(ServicosContratados servcontr) {
+        this.servcontr = servcontr;
+    }
+    
+    
     
 }

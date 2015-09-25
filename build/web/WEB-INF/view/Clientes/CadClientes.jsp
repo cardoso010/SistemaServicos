@@ -3,9 +3,8 @@
     Created on : 23/09/2015, 22:59:03
     Author     : cardoso
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List"%>
-<%@ page import="br.com.servicos.bean.ClientesBean"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,13 +50,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="#">Sistema</a>
+            <a class="navbar-brand" href="#">Sistema de Serviços</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="Clientes?acao=cadastrarClientes">Clientes</a></li>
             <li><a href="Servicos?acao=cadastrarServicos">Serviços</a></li>
+            <li><a href="ServicosContratados?acao=cadastrarServicosContratados">Serviços Contratados</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -80,7 +80,7 @@
     <div align="center">
     <h3 >Cadastra Clientes</h3>
         <table>
-            <form action="Clientes?acao=cadastrarCliente" method="POST">
+            <form action="Clientes?acao=cadastrarClientes" method="POST">
                 <tr>
                     <td>Nome:</td>
                     <td><input type="text" name="nome" class="form-control" placeholder="Nome" required autofocus></td>
@@ -132,31 +132,30 @@
                 <th>Pais</th>
               </tr>
             </thead>
-            <tbody>
-                <jsp:useBean id="ClientesBean" class="br.com.servicos.bean.ClientesBean" />
-                <c:forEach var="clientes" items="${cliente}">
-                    <tr>
-                        <td>${clientes.id}</td>
-                        <td>${clientes.nome}</td>
-                        <td>${clientes.endereco}</td>
-                        <td>${clientes.cep}</td>
-                        <td>${clientes.telefone}</td>
-                        <td>${clientes.email}</td>
-                        <td>${clientes.cidade}</td>
-                        <td>${clientes.pais}</td>
-                        <td>
-                            
-                            <a href="Clientes?acao=alterarCliente&id=${clientes.id}">
-                                <button class="btn btn-warning">Alterar</button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="Clientes?acao=deletarCliente&id=${clientes.id}">
-                            <button class="btn btn-danger">Deletar</button>
-                            </a>
-                        </td>
-                    </tr>
-                </c:forEach>
+            <tbody> 
+                    <c:forEach var="clientes" items="${cliente}">
+                        <tr>
+                            <td>${clientes.id}</td>
+                            <td>${clientes.nome}</td>
+                            <td>${clientes.endereco}</td>
+                            <td>${clientes.cep}</td>
+                            <td>${clientes.telefone}</td>
+                            <td>${clientes.email}</td>
+                            <td>${clientes.cidade}</td>
+                            <td>${clientes.pais}</td>
+                            <td>
+
+                                <a href="Clientes?acao=alterarCliente&id=${clientes.id}">
+                                    <button class="btn btn-warning">Alterar</button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="Clientes?acao=deletarCliente&id=${clientes.id}">
+                                <button class="btn btn-danger">Deletar</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
             </tbody>
           </table>
         </div>

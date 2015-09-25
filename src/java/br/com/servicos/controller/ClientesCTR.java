@@ -1,7 +1,6 @@
 package br.com.servicos.controller;
 
 import br.com.servicos.bean.ClientesBean;
-import br.com.servicos.dao.ClientesDAO;
 import br.com.servicos.entity.Clientes;
 import br.com.servicos.funcoes.Funcoes;
 import java.io.IOException;
@@ -34,12 +33,11 @@ public class ClientesCTR extends HttpServlet {
         String acao = objfuncoes.Nulo(request.getParameter("acao"));
         List<Clientes> cliente = new ClientesBean().listarClientes();
         if(!cliente.isEmpty()){
+            request.setAttribute("cliente", cliente);
             System.out.println("Não esta vazia!");
         }else{
             System.out.println("Esta vazia");
-        }
-        request.setAttribute("cliente", cliente);
-        
+        }      
         if(acao.equals("cadastrarClientes")){
             if(request.getParameter("nome") != null){
                 Clientes clientes = new Clientes();
@@ -56,7 +54,7 @@ public class ClientesCTR extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Clientes/CadClientes.jsp");
                 rd.forward(request, response);
             }else{
-                
+                System.out.println("entrou else");
                 RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Clientes/CadClientes.jsp");
                 rd.forward(request, response);
             }
@@ -79,9 +77,5 @@ public class ClientesCTR extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Clientes/CadClientes.jsp");
             rd.forward(request, response);
         }
-            
-    }
-
-
-    
+    } 
 }

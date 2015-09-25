@@ -49,13 +49,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="">Sistema</a>
+            <a class="navbar-brand" href="">Sistema de Serviços</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
             <li><a href="Clientes?acao=cadastrarClientes">Clientes</a></li>
             <li><a href="Servicos?acao=cadastrarServicos">Serviços</a></li>
+            <li><a href="ServicosContratados?acao=cadastrarServicosContratados">Serviços Contratados</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -74,7 +75,7 @@
     </nav>
 <div class="container theme-showcase" role="main">
     <div class="jumbotron">
-        teste
+     
     </div>
 </div> <!-- /container -->
     <!-- Bootstrap core JavaScript

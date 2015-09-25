@@ -3,7 +3,7 @@
     Created on : 23/09/2015, 23:59:03
     Author     : cardoso
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,13 +49,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="">Sistema</a>
+            <a class="navbar-brand" href="">Sistema de Serviços</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
             <li><a href="Clientes?acao=cadastrarClientes">Clientes</a></li>
             <li><a href="Servicos?acao=cadastrarServicos">Serviços</a></li>
+            <li><a href="ServicosContratados?acao=cadastrarServicosContratados">Serviços Contratados</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -78,7 +79,7 @@
     <div align="center">
     <h3 >Cadastra Serviços</h3>
         <table>
-            <form action="Servicos?acao=cadastrarServico" method="POST">
+            <form action="Servicos?acao=cadastrarServicos" method="POST">
             <tr>
                 <td>Nome:</td>
                 <td><input type="text" name="nome" class="form-control" placeholder="Nome" required autofocus></td>
@@ -106,21 +107,23 @@
               </tr>
             </thead>
             <tbody>
+                <c:forEach var="servico" items="${servicos}">
                     <tr>
-                        <td>ID</td>
-                        <td>Nome</td>
-                        <td>Preço</td>
+                        <td>${servico.id}</td>
+                        <td>${servico.nome}</td>
+                        <td>${servico.preco}</td>
                         <td>
-                            <a href="index.php?acao=alterarUsuario&id=<?php echo $usuarios->getId(); ?>">
+                            <a href="Servicos?acao=alterarServicos&id=${servico.id}">
                                 <button class="btn btn-warning">Alterar</button>
                             </a>
                         </td>
                         <td>
-                            <a href="index.php?acao=apagarUsuario&id=<?php echo $usuarios->getId(); ?>">
+                            <a href="Servicos?acao=deletarServicos&id=${servico.id}">
                             <button class="btn btn-danger">Deletar</button>
                             </a>
                         </td>
-                    </tr>           
+                    </tr> 
+                </c:forEach>
             </tbody>
           </table>
         </div>

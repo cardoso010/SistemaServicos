@@ -26,12 +26,8 @@ public class ServicosContratados implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_servico")
-    private Servicos servicos;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_cliente")
-    private Clientes cliente;
+    private int id_servicos;
+    private int id_cliente;
     private float preco;
     private String data_inicio;
     private String data_fim;
@@ -44,20 +40,20 @@ public class ServicosContratados implements Serializable {
         this.id = id;
     }
 
-    public Servicos getServicos() {
-        return servicos;
+    public int getId_servicos() {
+        return id_servicos;
     }
 
-    public void setServicos(Servicos servicos) {
-        this.servicos = servicos;
+    public void setId_servicos(int id_servicos) {
+        this.id_servicos = id_servicos;
     }
 
-    public Clientes getCliente() {
-        return cliente;
+    public int getId_cliente() {
+        return id_cliente;
     }
 
-    public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public float getPreco() {
@@ -84,6 +80,6 @@ public class ServicosContratados implements Serializable {
         this.data_fim = data_fim;
     }
 
-    
+   
     
 }

@@ -7,6 +7,7 @@ package br.com.servicos.bean;
 
 import br.com.servicos.dao.ServicosDAO;
 import br.com.servicos.entity.Servicos;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -21,9 +22,15 @@ public class ServicosBean {
     */
     private Servicos servico = new Servicos();
     private ServicosDAO servicosDAO = new ServicosDAO();
+    private List<Servicos> listaServicos;
     
     
     public ServicosBean() {
+    }
+    
+    public List listarServicos(){
+        listaServicos = servicosDAO.getList();
+        return this.listaServicos;
     }
     
     public String adicionaServico(){
@@ -45,29 +52,4 @@ public class ServicosBean {
         this.servico = servico;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.servico);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ServicosBean other = (ServicosBean) obj;
-        if (!Objects.equals(this.servico, other.servico)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
-    
 }

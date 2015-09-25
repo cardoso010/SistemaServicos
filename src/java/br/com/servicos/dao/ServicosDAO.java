@@ -1,8 +1,11 @@
 package br.com.servicos.dao;
 
+import br.com.servicos.entity.Clientes;
 import br.com.servicos.entity.Servicos;
 import br.com.servicos.interfaces.IServicosDAO;
 import br.com.servicos.util.HibernateUtil;
+import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -14,6 +17,16 @@ public class ServicosDAO implements IServicosDAO{
     
     private Session sessao;
     private Transaction trans;
+    private List<Servicos> list;
+    
+    public List<Servicos> getList(){
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        trans = sessao.beginTransaction();
+        
+        Criteria cri = sessao.createCriteria(Servicos.class);
+        this.list = cri.list();
+        return list;
+    }
     
     public void addServicos(Servicos s){
         

@@ -9,6 +9,7 @@ import br.com.servicos.bean.ServicosBean;
 import br.com.servicos.entity.Servicos;
 import br.com.servicos.funcoes.Funcoes;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,9 +36,17 @@ public class ServicosCTR extends HttpServlet{
        
         Funcoes objfuncoes = new Funcoes();        
         String acao = objfuncoes.Nulo(request.getParameter("acao"));
+        List<Servicos> servico = new ServicosBean().listarServicos();
+        if(!servico.isEmpty()){
+            System.out.println("Não esta vazio!");
+            request.setAttribute("servicos", servico);
+        }else{
+            System.out.println("esta vazio!");
+        }
         
         if(acao.equals("cadastrarServicos")){
             if(request.getParameter("nome") != null){
+                System.out.println("Entrou inserir servico");
                 Servicos servicos = new Servicos();
                 System.out.println("Nome = "+ request.getParameter("nome"));
                 servicos.setNome(request.getParameter("nome"));
@@ -52,10 +61,17 @@ public class ServicosCTR extends HttpServlet{
                 RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Servicos/CadServicos.jsp");
                 rd.forward(request, response);
             }
-        }else if(acao.equals("listarServicos")){
+        }else if(acao.equals("alterarServicos")){
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Servicos/LisServicos.jsp");
             rd.forward(request, response);
-        }else{
+        }else if(acao.equals("deletarServicos")){
+            if(request.getParameter("id") != null){
+                ServicosBean servicosbean = new ServicosBean();
+                Servicos serv = new Servicos();
+                serv.setId(Integer.parseInt(request.getParameter("id")));
+                servicosbean.setServico(serv);
+                servicosbean.removerservico();
+            }
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/Servicos/CadServicos.jsp");
             rd.forward(request, response);
         }
